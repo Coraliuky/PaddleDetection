@@ -5,19 +5,19 @@ English | [简体中文](README_cn.md)
 ![](../../docs/images/picedet_demo.jpeg)
 ## Introduction
 
-We developed a series of lightweight models, named `PP-PicoDet`. Because of the excellent performance, our models are very suitable for deployment on mobile or CPU. For more details, please refer to our [report on arXiv](https://arxiv.org/abs/2111.00902).
+We have developed a series of lightweight models, named `PP-PicoDet`. Because of the excellent performance on mobile devices, they become the SOTA models. For more technical details, refer to [report on arXiv](https://arxiv.org/abs/2111.00902).
 
-- 🌟 Higher mAP: the **first** object detectors that surpass mAP(0.5:0.95) **30+** within 1M parameters when the input size is 416.
-- 🚀 Faster latency: 150FPS on mobile ARM CPU.
-- 😊 Deploy friendly: support PaddleLite/MNN/NCNN/OpenVINO and provide C++/Python/Android implementation.
-- 😍 Advanced algorithm: use the most advanced algorithms and offer innovation, such as ESNet, CSP-PAN, SimOTA with VFL, etc.
+- 🌟 Higher mAP: the **first** object detectors whose mAP values surpass(0.5:0.95) **30+** within 1M parameters when the input size is 416.
+- 🚀 Faster in inference: 150FPS on mobile ARM CPU.
+- 😊 Friendly Deployment: they are compatible with inference libraries including PaddleLite/MNN/NCNN/OpenVINO, and provide C++/Python/Android demos.
+- 😍 Advanced algorithms: innovations are made in available SOAT algorithms such as ESNet, CSP-PAN, SimOTA and so on.
 
 
 <div align="center">
   <img src="../../docs/images/picodet_map.png" width='600'/>
 </div>
 
-### Comming Soon
+### Coming Soon
 - [ ] More series of model, such as smaller or larger model.
 - [ ] Pretrained models for more scenarios.
 - [ ] More features in need.
