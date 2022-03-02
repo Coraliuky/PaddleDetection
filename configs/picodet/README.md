@@ -46,11 +46,11 @@ We have developed a series of lightweight models, named `PP-PicoDet`. Because of
 
 
 <details open>
-<summary><b>Table Notes:</b></summary>
+<summary><b>Note:</b></summary>
 
-- <a name="latency">Latency:</a> All our models test on `Qualcomm Snapdragon 865(4xA77+4xA55)` with 4 threads by arm8 and with FP16. In the above table, test latency on [NCNN](https://github.com/Tencent/ncnn) and `Lite`->[Paddle-Lite](https://github.com/PaddlePaddle/Paddle-Lite).  And testing latency with code: [MobileDetBenchmark](https://github.com/JiweiMaster/MobileDetBenchmark).
-- PicoDet is trained on COCO train2017 dataset and evaluated on COCO val2017.
-- PicoDet used 4 or 8 GPUs for training and all checkpoints are trained with default settings and hyperparameters.
+- <a name="latency">Latency:</a> All our models are tested on `Qualcomm Snapdragon 865(4xA77+4xA55)` with 4 threads and with FP16 inference. In the above table, the tags of `NCNN` and `Lite` indicates that tests are performed on [NCNN](https://github.com/Tencent/ncnn) and [Paddle-Lite](https://github.com/PaddlePaddle/Paddle-Lite) libraries. The benchmark script of the tests is from [MobileDetBenchmark](https://github.com/JiweiMaster/MobileDetBenchmark).
+- PicoDet is trained on the COCO train2017 dataset and evaluated on COCO val2017.
+- PicoDet uses 4 or 8 GPUs (PicoDet-L-640) for training and all models are trained with default settings and hyperparameters.
 
 </details>
 
@@ -84,7 +84,7 @@ We have developed a series of lightweight models, named `PP-PicoDet`. Because of
 <summary>Installation</summary>
 
 - [Installation guide](https://github.com/PaddlePaddle/PaddleDetection/blob/release/2.3/docs/tutorials/INSTALL.md)
-- [Prepare dataset](https://github.com/PaddlePaddle/PaddleDetection/blob/release/2.3/docs/tutorials/PrepareDataSet_en.md)
+- [Training data preparation](https://github.com/PaddlePaddle/PaddleDetection/blob/release/2.3/docs/tutorials/PrepareDataSet_en.md)
 
 </details>
 
@@ -103,7 +103,7 @@ python tools/train.py -c configs/picodet/picodet_s_320_coco.yml --eval
 
 
 ```shell
-# training on single-GPU
+# training on multi-GPU
 export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
 python -m paddle.distributed.launch --gpus 0,1,2,3,4,5,6,7 tools/train.py -c configs/picodet/picodet_s_320_coco.yml --eval
 ```
@@ -115,24 +115,24 @@ python tools/eval.py -c configs/picodet/picodet_s_320_coco.yml \
               -o weights=https://paddledet.bj.bcebos.com/models/picodet_s_320_coco.pdparams
 ```
 
-- Infer:
+- Testing:
 
 ```shell
 python tools/infer.py -c configs/picodet/picodet_s_320_coco.yml \
               -o weights=https://paddledet.bj.bcebos.com/models/picodet_s_320_coco.pdparams
 ```
 
-Detail also can refer to [Quick start guide](https://github.com/PaddlePaddle/PaddleDetection/blob/release/2.3/docs/tutorials/GETTING_STARTED.md).
+For details, refer to [Quick start guide](https://github.com/PaddlePaddle/PaddleDetection/blob/release/2.3/docs/tutorials/GETTING_STARTED.md).
 
 </details>
 
 
 ## Deployment
 
-### Export and Convert Model
+### Model Export and Conversion
 
 <details>
-<summary>1. Export model (click to expand)</summary>
+<summary>1. Export the model (click to expand)</summary>
 
 ```shell
 cd PaddleDetection
@@ -143,7 +143,7 @@ python tools/export_model.py -c configs/picodet/picodet_s_320_coco.yml \
 </details>
 
 <details>
-<summary>2. Convert to PaddleLite (click to expand)</summary>
+<summary>2. Convert it into PaddleLite (click to expand)</summary>
 
 - Install Paddlelite>=2.10.rc:
 
@@ -151,7 +151,7 @@ python tools/export_model.py -c configs/picodet/picodet_s_320_coco.yml \
 pip install paddlelite
 ```
 
-- Convert model:
+- Convert the model:
 
 ```shell
 # FP32
@@ -163,16 +163,16 @@ paddle_lite_opt --model_dir=inference_model/picodet_s_320_coco --valid_targets=a
 </details>
 
 <details>
-<summary>3. Convert to ONNX (click to expand)</summary>
+<summary>3. Convert the model to ONNX (click to expand)</summary>
 
-- Install [Paddle2ONNX](https://github.com/PaddlePaddle/Paddle2ONNX) >= 0.7 and ONNX > 1.10.1, for details, please refer to [Tutorials of Export ONNX Model](../../deploy/EXPORT_ONNX_MODEL.md)
+- Install [Paddle2ONNX](https://github.com/PaddlePaddle/Paddle2ONNX) >= 0.7 and ONNX > 1.10.1. For details, please refer to [Tutorials of exporting the ONNX model](../../deploy/EXPORT_ONNX_MODEL.md)
 
 ```shell
 pip install onnx
 pip install paddle2onnx
 ```
 
-- Convert model:
+- Convert the model:
 
 ```shell
 paddle2onnx --model_dir output_inference/picodet_s_320_coco/ \
@@ -182,20 +182,20 @@ paddle2onnx --model_dir output_inference/picodet_s_320_coco/ \
             --save_file picodet_s_320_coco.onnx
 ```
 
-- Simplify ONNX model: use onnx-simplifier to simplify onnx model.
+- Simplify the ONNX model by using onnx-simplifier.
 
   - Install onnx-simplifier >= 0.3.6:
   ```shell
   pip install onnx-simplifier
   ```
-  - simplify onnx model:
+  - Simplify the ONNX model:
   ```shell
   python -m onnxsim picodet_s_320_coco.onnx picodet_s_processed.onnx
   ```
 
 </details>
 
-- Deploy models
+- Models in deployment
 
 | Model     | Input size | ONNX  | Paddle Lite(fp32) | Paddle Lite(fp16) |
 | :-------- | :--------: | :---------------------: | :----------------: | :----------------: |
@@ -211,7 +211,7 @@ paddle2onnx --model_dir output_inference/picodet_s_320_coco/ \
 | PicoDet-LCNet 1.5x           |  416*416   | [model](https://paddledet.bj.bcebos.com/deploy/third_engine/picodet_lcnet_1_5x_416_coco.onnx) | [model](https://paddledet.bj.bcebos.com/deploy/paddlelite/picodet_lcnet_1_5x.tar) | [model](https://paddledet.bj.bcebos.com/deploy/paddlelite/picodet_lcnet_1_5x_fp16.tar) |
 
 
-### Deploy
+### Deployment
 
 - PaddleInference demo [Python](../../deploy/python) & [C++](../../deploy/cpp)
 - [PaddleLite C++ demo](../../deploy/lite)
@@ -231,12 +231,12 @@ Android demo visualization:
 ## Quantization
 
 <details open>
-<summary>Requirements:</summary>
+<summary> Requirements:</summary>
 
 - PaddlePaddle >= 2.2.0rc0
 - PaddleSlim >= 2.2.0rc0
 
-**Install:**
+**Installation:**
 
 ```shell
 pip install paddleslim==2.2.0rc0
@@ -245,7 +245,7 @@ pip install paddleslim==2.2.0rc0
 </details>
 
 <details>
-<summary>Quant aware (click to expand)</summary>
+<summary>Quant-aware training (click to expand)</summary>
 
 Configure the quant config and start training:
 
@@ -254,21 +254,21 @@ python tools/train.py -c configs/picodet/picodet_s_320_coco.yml \
           --slim_config configs/slim/quant/picodet_s_quant.yml --eval
 ```
 
-- More detail can refer to [slim document](https://github.com/PaddlePaddle/PaddleDetection/tree/develop/configs/slim)
+- For more details, refer to [slim document](https://github.com/PaddlePaddle/PaddleDetection/tree/develop/configs/slim)
 
 </details>
 
 <details>
-<summary>Post quant (click to expand)</summary>
+<summary>Post training quantization (click to expand)</summary>
 
-Configure the post quant config and start calibrate model:
+Calibrate and export the quantized model:
 
 ```shell
 python tools/post_quant.py -c configs/picodet/picodet_s_320_coco.yml \
           --slim_config configs/slim/post_quant/picodet_s_ptq.yml
 ```
 
-- Notes: Now the accuracy of post quant is abnormal and this problem is being solved.
+- Note: Now the model accuracy of post-training quantization is abnormal and this problem is being solved.
 
 </details>
 
@@ -277,20 +277,20 @@ python tools/post_quant.py -c configs/picodet/picodet_s_320_coco.yml \
 <details open>
 <summary>Toturial:</summary>
 
-Please refer this [documentation](https://github.com/PaddlePaddle/PaddleDetection/tree/release/2.3/configs/picodet/pruner/README.md) for details such as requirements, training and deployment.
+Please refer to this [documentation](https://github.com/PaddlePaddle/PaddleDetection/tree/release/2.3/configs/picodet/pruner/README.md) for details about requirements, training, and deployment.
 
 </details>
 
 ## Application
 
-- **Pedestrian detection:** model zoo of `PicoDet-S-Pedestrian` please refer to [PP-TinyPose](https://github.com/PaddlePaddle/PaddleDetection/tree/release/2.3/configs/keypoint/tiny_pose#%E8%A1%8C%E4%BA%BA%E6%A3%80%E6%B5%8B%E6%A8%A1%E5%9E%8B)
+- **Pedestrian detection:** For model zoo of `PicoDet-S-Pedestrian`, please refer to [PP-TinyPose](https://github.com/PaddlePaddle/PaddleDetection/tree/release/2.3/configs/keypoint/tiny_pose#%E8%A1%8C%E4%BA%BA%E6%A3%80%E6%B5%8B%E6%A8%A1%E5%9E%8B)
 
-- **Mainbody detection:** model zoo of `PicoDet-L-Mainbody` please refer to [mainbody detection](./application/mainbody_detection/README.md)
+- **Mainbody detection:** For model zoo of `PicoDet-L-Mainbody`, please refer to [mainbody detection](./application/mainbody_detection/README.md)
 
 ## FAQ
 
 <details>
-<summary>Out of memory error.</summary>
+<summary>Out of memory error </summary>
 
 Please reduce the `batch_size` of `TrainReader` in config.
 
@@ -299,7 +299,7 @@ Please reduce the `batch_size` of `TrainReader` in config.
 <details>
 <summary>How to transfer learning.</summary>
 
-Please reset `pretrain_weights` in config, which trained on coco. Such as:
+Please reset `pretrain_weights` in config, for example, use the trained models on COCO for your training. 
 ```yaml
 pretrain_weights: https://paddledet.bj.bcebos.com/models/picodet_l_640_coco.pdparams
 ```
@@ -307,7 +307,7 @@ pretrain_weights: https://paddledet.bj.bcebos.com/models/picodet_l_640_coco.pdpa
 </details>
 
 <details>
-<summary>The transpose operator is time-consuming on some hardware.</summary>
+<summary>Time analysis of transpose operators on some hardware</summary>
 
 Please use `PicoDet-LCNet` model, which has fewer `transpose` operators.
 
@@ -317,7 +317,7 @@ Please use `PicoDet-LCNet` model, which has fewer `transpose` operators.
 <details>
 <summary>How to count model parameters.</summary>
 
-You can insert below code at [here](https://github.com/PaddlePaddle/PaddleDetection/blob/develop/ppdet/engine/trainer.py#L141) to count learnable parameters.
+You can insert the following code at [trainer.py](https://github.com/PaddlePaddle/PaddleDetection/blob/develop/ppdet/engine/trainer.py#L141) to count learnable parameters.
 
 ```python
 params = sum([
@@ -330,7 +330,7 @@ print('params: ', params)
 </details>
 
 ## Cite PP-PicoDet
-If you use PicoDet in your research, please cite our work by using the following BibTeX entry:
+If you need to use PicoDet in research, cite our work by using the following BibTeX entry:
 ```
 @misc{yu2021pppicodet,
       title={PP-PicoDet: A Better Real-Time Object Detector on Mobile Devices},
