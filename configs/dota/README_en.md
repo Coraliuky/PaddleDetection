@@ -1,3 +1,4 @@
+[简体中文](README.md) | English
 # S2ANet Model
 
 ## Content
@@ -20,43 +21,43 @@
 
 ## Introduction
 
-[S2ANet](https://arxiv.org/pdf/2008.09397.pdf) is used to detect rotating frame's model, required use of PaddlePaddle 2.1.1(can be installed using PIP) or proper [develop version](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#whl-release).
+[S2ANet](https://arxiv.org/pdf/2008.09397.pdf) is used to detect rotated boxes, requiring to use PaddlePaddle 2.1.1(can be installed with PIP) or other [develop versions](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#whl-release).
 
 
-## Prepare Data
+## Data Preparation
 
 ### DOTA data
-[DOTA Dataset] is a dataset of object detection in aerial images, which contains 2806 images with a resolution of 4000x4000 per image.
+[DOTA Dataset] is a dataset for object detection in aerial images, containing 2806 images with a resolution of 4000x4000.
 
-|  Data version  |  categories  |   images   |  size  |    instances    |     annotation method     |
+|  Data version  |  Number of category  |   Number of images   |  Image size  |    Number of instances    |     Annotation method     |
 |:--------:|:-------:|:---------:|:---------:| :---------:| :------------: |
 |   v1.0   |   15    |   2806    | 800~4000  |   118282    |   OBB + HBB     |
 |   v1.5   |   16    |   2806    | 800~4000  |   400000    |   OBB + HBB     |
 
-Note: OBB annotation is an arbitrary quadrilateral; The vertices are arranged in clockwise order. The HBB annotation mode is the outer rectangle of the indicator note example.
+Note: In OBB annotation, every object is annotated by an oriented bounding box, and the vertices are arranged in a clockwise order. In HBB style, every object is annotated by an horizontal bounding box.
 
-There were 2,806 images in the DOTA dataset, including 1,411 images as a training set, 458 images as an evaluation set, and the remaining 937 images as a test set.
+There are 2,806 images in the DOTA dataset. 1,411 images make up a training set, and 458 images make up an evaluation set, and the remaining 937 images compose a test set.
 
 If you need to cut the image data, please refer to the [DOTA_devkit](https://github.com/CAPTAIN-WHU/DOTA_devkit).
 
-After setting `crop_size=1024, stride=824, gap=200` parameters to cut data, there are 15,749 images in the training set, 5,297 images in the evaluation set, and 10,833 images in the test set.
+After setting `crop_size=1024, stride=824, gap=200` parameters for data segmentation, there are 15,749 images in the training set, 5,297 images in the evaluation set, and 10,833 images in the test set.
 
-### Customize Data
+### Data Customization
 
-There are two ways to annotate data:
+There are two annotation techniques:
 
-- The first is a tagging rotating rectangular, can pass rotating rectangular annotation tool [roLabelImg](https://github.com/cgvict/roLabelImg) to describe rotating rectangular box.
+- The first tags rotated rectangulars with the annotation tool [roLabelImg](https://github.com/cgvict/roLabelImg).
 
-- The second is to mark the quadrilateral, through the script into an external rotating rectangle, so that the obtained mark may have a certain error with the real object frame.
+- The second marks quadrilaterals by converting them into outer rotated rectangles through the script, but this may lead to discrepancy between annotations and the reality.
 
 Then convert the annotation result into coco annotation format, where each `bbox` is in the format of `[x_center, y_center, width, height, angle]`, where the angle is expressed in radians.
 
 Reference [spinal disk dataset](https://aistudio.baidu.com/aistudio/datasetdetail/85885), we divide dataset into training set (230), the test set (57), data address is: [spine_coco](https://paddledet.bj.bcebos.com/data/spine_coco.tar). The dataset has a small number of images, which can be used to train the S2ANet model quickly.
 
 
-## Start Training
+## Starting Training
 
-### 1. Install the rotating frame IOU and calculate the OP
+### 1. Installing the rotating frame IOU and calculate the OP
 
 Rotate box IoU calculate [ext_op](../../ppdet/ext_op) is a reference PaddlePaddle [custom external operator](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/07_new_op/new_custom_op.html).
 
@@ -99,7 +100,7 @@ cd PaddleDetecetion/ppdet/ext_op
 python3.7 test.py
 ```
 
-### 2. Train
+### 2. Training
 **Attention:**
 In the configuration file, the learning rate is set based on the eight-card GPU training. If the single-card GPU training is used, set the learning rate to 1/8 of the original value.
 
@@ -158,7 +159,7 @@ Please refer to [DOTA_devkit](https://github.com/CAPTAIN-WHU/DOTA_devkit) genera
 **Attention:** `multiclass_nms` is used here, which is slightly different from the original author's use of NMS.
 
 
-## Predict Deployment
+## Inference and Deployment
 
 The inputs of the `multiclass_nms` operator in Paddle support quadrilateral inputs, so deployment can be done without relying on the rotating frame IOU operator.
 
