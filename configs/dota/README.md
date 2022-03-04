@@ -1,3 +1,4 @@
+简体中文 | [English](README_en.md)
 # S2ANet模型
 
 ## 内容
