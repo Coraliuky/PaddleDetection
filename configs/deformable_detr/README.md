@@ -3,19 +3,19 @@
 ## Introduction
 
 
-Deformable DETR is an object detection model based on DETR. We reproduced the model of the paper.
+Deformable DETR is an object detection model based on DETR. We have reproduced the model of the paper.
 
 
 ## Model Zoo
 
-| Backbone | Model | Images/GPU  | Inf time (fps) | Box AP | Config | Download |
+| Backbone | Model | Number of images/GPU  | Inference time (fps) | Box AP | Config | Download |
 |:------:|:--------:|:--------:|:--------------:|:------:|:------:|:--------:|
-| R-50 | Deformable DETR  | 2 | --- | 44.1 | [config](https://github.com/PaddlePaddle/PaddleDetection/blob/release/2.3/configs/deformable_detr/deformable_detr_r50_1x_coco.yml) | [model](https://paddledet.bj.bcebos.com/models/deformable_detr_r50_1x_coco.pdparams) |
+| R-50 | Deformable DETR  | 2 | --- | 44.1 | [Config](https://github.com/PaddlePaddle/PaddleDetection/blob/release/2.3/configs/deformable_detr/deformable_detr_r50_1x_coco.yml) | [Model](https://paddledet.bj.bcebos.com/models/deformable_detr_r50_1x_coco.pdparams) |
 
-**Notes:**
+**Note:**
 
-- Deformable DETR is trained on COCO train2017 dataset and evaluated on val2017 results of `mAP(IoU=0.5:0.95)`.
-- Deformable DETR uses 8GPU to train 50 epochs.
+- Deformable DETR is trained on COCO train2017 dataset and evaluated on val2017 in `mAP(IoU=0.5:0.95)`.
+- Deformable DETR uses 8 GPUs to train 50 epochs.
 
 GPU multi-card training
 ```bash
