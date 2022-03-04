@@ -2,11 +2,11 @@
 
 ## Introduction
 
-SOLOv2 (Segmenting Objects by Locations) is a fast instance segmentation framework with strong performance. We reproduced the model of the paper, and improved and optimized the accuracy and speed of the SOLOv2.
+SOLOv2 (Segmenting Objects by Locations) is a fast instance segmentation framework with strong performance. We have reproduced the model in the paper, and optimized the accuracy and speed of the SOLOv2.
 
 **Highlights:**
 
-- Training Time: The training time of the model of `solov2_r50_fpn_1x` on Tesla v100 with 8 GPU is only 10 hours.
+- Training Time: The training of the model of `solov2_r50_fpn_1x` on Tesla v100 with 8 GPUs takes only 10 hours.
 
 ## Model Zoo
 
@@ -23,7 +23,7 @@ SOLOv2 (Segmenting Objects by Locations) is a fast instance segmentation framewo
 | SOLOv2 | R50-FPN                 |  True                |   3x    |     38.0         |   21.9    | V100 |  [model](https://paddledet.bj.bcebos.com/models/solov2_r50_fpn_3x_coco.pdparams) | [config](https://github.com/PaddlePaddle/PaddleDetection/tree/release/2.3/configs/solov2/solov2_r50_fpn_3x_coco.yml) |
 | SOLOv2 | R101vd-FPN                 |  True                |   3x    |     42.7         |   12.1    | V100 |  [model](https://paddledet.bj.bcebos.com/models/solov2_r101_vd_fpn_3x_coco.pdparams) | [config](https://github.com/PaddlePaddle/PaddleDetection/tree/release/2.3/configs/solov2/solov2_r101_vd_fpn_3x_coco.yml) |
 
-**Notes:**
+**Note:**
 
 - SOLOv2 is trained on COCO train2017 dataset and evaluated on val2017 results of `mAP(IoU=0.5:0.95)`.
 
@@ -32,7 +32,7 @@ SOLOv2 (Segmenting Objects by Locations) is a fast instance segmentation framewo
 | :---------------------: | :-------------------: | :-----: | :------------: | :-----: | :---------: | :------------------------: |
 | Light-R50-VD-DCN-FPN          |  512     |   3x    |     38.6          |  39.0   | [model](https://paddledet.bj.bcebos.com/models/solov2_r50_enhance_coco.pdparams) | [config](https://github.com/PaddlePaddle/PaddleDetection/tree/release/2.3/configs/solov2/solov2_r50_enhance_coco.yml) |
 
-**Optimizing method of enhanced model:**
+**Optimization method of the enhanced model:**
 - Better backbone network: ResNet50vd-DCN
 - A better pre-training model for knowledge distillation
 - [Exponential Moving Average](https://www.investopedia.com/terms/e/ema.asp)
