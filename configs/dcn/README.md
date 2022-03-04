@@ -1,3 +1,4 @@
+简体中文 | [English](Readme en.md)
 ### Deformable ConvNets v2
 
 | 骨架网络             | 网络类型           | 卷积    | 每张GPU图片个数 | 学习率策略 |推理时间(fps)| Box AP | Mask AP |                           下载                           | 配置文件 |
