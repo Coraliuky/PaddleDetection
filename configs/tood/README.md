@@ -4,7 +4,7 @@
 
 [TOOD: Task-aligned One-stage Object Detection](https://arxiv.org/abs/2108.07755)
 
-TOOD is an object detection model. We reproduced the model of the paper.
+TOOD is an object detection model. We have reproduced the model in the paper.
 
 
 ## Model Zoo
@@ -15,8 +15,8 @@ TOOD is an object detection model. We reproduced the model of the paper.
 
 **Notes:**
 
-- TOOD is trained on COCO train2017 dataset and evaluated on val2017 results of `mAP(IoU=0.5:0.95)`.
-- TOOD uses 8GPU to train 12 epochs.
+- TOOD is trained on COCO train2017 dataset and evaluated on val2017 in `mAP(IoU=0.5:0.95)`.
+- TOOD uses 8 GPUs to train 12 epochs.
 
 GPU multi-card training
 ```bash
