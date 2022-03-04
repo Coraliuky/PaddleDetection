@@ -1,3 +1,4 @@
+[简体中文](README.md) | English
 ### Deformable ConvNets v2
 
 | Backbone |  Net type | Convolution | Number of images per GPU | Learning rate strategy | Inference time (fps) | Box AP | Mask AP | Download | Config|
