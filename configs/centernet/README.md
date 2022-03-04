@@ -9,17 +9,17 @@ English | [简体中文](README_cn.md)
 
 ## Introduction
 
-[CenterNet](http://arxiv.org/abs/1904.07850) is an Anchor Free detector, which model an object as a single point -- the center point of its bounding box. The detector uses keypoint estimation to find center points and regresses to all other object properties. The center point based approach, CenterNet, is end-to-end differentiable, simpler, faster, and more accurate than corresponding bounding box based detectors.
+[CenterNet](http://arxiv.org/abs/1904.07850) is an anchor-free detector, which detects an object as a single point -- the center point of its bounding box.  The Keypoint-based detector locates the center point of a box and regresses other attributes of an object. More importantly, CenterNet is an end-to-end trainable network based on center points, more efficient and accurate than its anchor-based counterparts.
 
 ## Model Zoo
 
-### CenterNet Results on COCO-val 2017
+### Results of CenterNet on COCO-val 2017
 
-| backbone       | input shape | mAP   |    FPS    | download | config |
+| Backbone       | Input shape | mAP   |    FPS    | Download | Config |
 | :--------------| :------- |  :----: | :------: | :----: |:-----: |
 | DLA-34(paper)  | 512x512 |  37.4  |     -   |    -   |   -    |
-| DLA-34         | 512x512 |  37.6  |     -   | [model](https://bj.bcebos.com/v1/paddledet/models/centernet_dla34_140e_coco.pdparams) | [config](https://github.com/PaddlePaddle/PaddleDetection/tree/release/2.3/configs/centernet/centernet_dla34_140e_coco.yml) |
-| ResNet50 + DLAUp  | 512x512 |  38.9  |     -   | [model](https://bj.bcebos.com/v1/paddledet/models/centernet_r50_140e_coco.pdparams) | [config](https://github.com/PaddlePaddle/PaddleDetection/tree/release/2.3/configs/centernet/centernet_r50_140e_coco.yml) |
+| DLA-34         | 512x512 |  37.6  |     -   | [Model](https://bj.bcebos.com/v1/paddledet/models/centernet_dla34_140e_coco.pdparams) | [Config](https://github.com/PaddlePaddle/PaddleDetection/tree/release/2.3/configs/centernet/centernet_dla34_140e_coco.yml) |
+| ResNet50 + DLAUp  | 512x512 |  38.9  |     -   | [Model](https://bj.bcebos.com/v1/paddledet/models/centernet_r50_140e_coco.pdparams) | [Config](https://github.com/PaddlePaddle/PaddleDetection/tree/release/2.3/configs/centernet/centernet_r50_140e_coco.yml) |
 
 ## Citations
 ```
