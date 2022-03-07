@@ -13,7 +13,7 @@ FCOS (Fully Convolutional One-Stage Object Detection) is a fast anchor-free obje
 | Backbone        | Model      | Number of images per GPU | lr schedule |FPS | Box AP |                           Download                          | Config |
 | :-------------- | :------------- | :-----: | :-----: | :------------: | :-----: | :-----------------------------------------------------: | :-----: |
 | ResNet50-FPN    | FCOS           |    2    |   1x      |     ----     |  39.6  | [Download](https://paddledet.bj.bcebos.com/models/fcos_r50_fpn_1x_coco.pdparams) | [Config](https://github.com/PaddlePaddle/PaddleDetection/tree/release/2.3/configs/fcos/fcos_r50_fpn_1x_coco.yml) |
-| ResNet50-FPN    | FCOS+DCN       |    2    |   1x      |     ----     |  44.3  | [Download](https://paddledet.bj.bcebos.com/models/fcos_dcn_r50_fpn_1x_coco.pdparams) | [config](https://github.com/PaddlePaddle/PaddleDetection/tree/release/2.3/configs/fcos/fcos_dcn_r50_fpn_1x_coco.yml) |
+| ResNet50-FPN    | FCOS+DCN       |    2    |   1x      |     ----     |  44.3  | [Download](https://paddledet.bj.bcebos.com/models/fcos_dcn_r50_fpn_1x_coco.pdparams) | [Config](https://github.com/PaddlePaddle/PaddleDetection/tree/release/2.3/configs/fcos/fcos_dcn_r50_fpn_1x_coco.yml) |
 | ResNet50-FPN    | FCOS+multiscale_train    |    2    |   2x      |     ----     |  41.8  | [Download](https://paddledet.bj.bcebos.com/models/fcos_r50_fpn_multiscale_2x_coco.pdparams) | [Config](https://github.com/PaddlePaddle/PaddleDetection/tree/release/2.3/configs/fcos/fcos_r50_fpn_multiscale_2x_coco.yml) |
 
 **Note:**
