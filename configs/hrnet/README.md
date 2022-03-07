@@ -1,4 +1,4 @@
-# High-resolution networks (HRNets) for object detection
+# High-Resolution Networks (HRNets) for Object Detection
 
 ## Introduction
 
@@ -28,7 +28,7 @@
 
 ## Model Zoo
 
-| Backbone                | Type           | Image/gpu | Lr schd | Inf time (fps) | Box AP | Mask AP |                           Download                           | Configs |
+| Backbone                | Type           | Image/gpu | Lr schd | Inf time (fps) | Box AP | Mask AP |                           Download                           | Config |
 | :---------------------- | :------------- | :-------: | :-----: | :------------: | :----: | :-----: | :----------------------------------------------------------: | :-----: |
 | HRNetV2p_W18            | Faster         |     1     |   1x    |    -      |  36.8  |    -    | [model](https://paddledet.bj.bcebos.com/models/faster_rcnn_hrnetv2p_w18_1x_coco.pdparams) | [config](https://github.com/PaddlePaddle/PaddleDetection/tree/release/2.3/configs/hrnet/faster_rcnn_hrnetv2p_w18_1x_coco.yml) |
 | HRNetV2p_W18            | Faster         |     1     |   2x    |    -      |  39.0  |    -    | [model](https://paddledet.bj.bcebos.com/models/faster_rcnn_hrnetv2p_w18_2x_coco.pdparams) | [config](https://github.com/PaddlePaddle/PaddleDetection/tree/release/2.3/configs/hrnet/faster_rcnn_hrnetv2p_w18_2x_coco.yml) |
