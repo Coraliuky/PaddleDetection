@@ -6,7 +6,7 @@
 
 ## Introduction
 
--    The keypoint detection part in PaddleDetection follows the state-of-the-art algorithm closely, including Top-Down and BottomUp methods, which can meet the different needs of users.
+- The keypoint detection part of PaddleDetection keeps pace with the state-of-the-art algorithm. It includes Top-Down and Bottom-Up solutions to meet various needs of users.
 
 <div align="center">
   <img src="./football_keypoint.gif" width='800'/>
@@ -16,7 +16,7 @@
 
 ####   Model Zoo
 COCO Dataset
-| Model              | Input Size | AP(coco val) |                           Model Download                           | Config File                                                    |
+| Model              | Input Size | AP(coco val) |                           Download                           | Config                                                    |
 | :---------------- | -------- | :----------: | :----------------------------------------------------------: | ----------------------------------------------------------- |
 | HigherHRNet-w32       | 512      |     67.1     | [higherhrnet_hrnet_w32_512.pdparams](https://paddledet.bj.bcebos.com/models/keypoint/higherhrnet_hrnet_w32_512.pdparams) | [config](./higherhrnet/higherhrnet_hrnet_w32_512.yml)       |
 | HigherHRNet-w32       | 640      |     68.3     | [higherhrnet_hrnet_w32_640.pdparams](https://paddledet.bj.bcebos.com/models/keypoint/higherhrnet_hrnet_w32_640.pdparams) | [config](./higherhrnet/higherhrnet_hrnet_w32_640.yml)       |
@@ -32,33 +32,33 @@ COCO Dataset
 | LiteHRNet-30                   | 384x288  |     72.5     | [lite_hrnet_30_384x288_coco.pdparams](https://bj.bcebos.com/v1/paddledet/models/keypoint/lite_hrnet_30_384x288_coco.pdparams) | [config](./lite_hrnet/lite_hrnet_30_384x288_coco.yml)     |
 
 
-Note：The AP results of Top-Down models are based on bounding boxes in GroundTruth.
+Note：The AP results of Top-Down models are based on Ground Truth bounding boxes.
 
 MPII Dataset
-| Model  | Input Size | PCKh(Mean) | PCKh(Mean@0.1) |                           Model Download                           | Config File                                     |
+| Model  | Input Size | PCKh(Mean) | PCKh(Mean@0.1) |                           Download                           | Config                                     |
 | :---- | -------- | :--------: | :------------: | :----------------------------------------------------------: | -------------------------------------------- |
 | HRNet-w32 | 256x256  |    90.6    |      38.5      | [hrnet_w32_256x256_mpii.pdparams](https://paddledet.bj.bcebos.com/models/keypoint/hrnet_w32_256x256_mpii.pdparams) | [config](./hrnet/hrnet_w32_256x256_mpii.yml) |
 
 
-We also release [PP-TinyPose](./tiny_pose/README_en.md), a real-time keypoint detection model optimized for mobile devices. Welcome to experience.
+We have also released [PP-TinyPose](./tiny_pose/README_en.md), a real-time keypoint detection model optimized for mobile devices. Just explore it.
 
-## Getting Start
+## Getting Started
 
-### 1. Environmental Installation
+### 1. Environment Installation
 
-​    Please refer to [PaddleDetection Installation Guild](../../docs/tutorials/INSTALL.md) to install PaddlePaddle and PaddleDetection correctly.
+​    Please refer to [PaddleDetection Installation Guide](../../docs/tutorials/INSTALL.md) to install PaddlePaddle and PaddleDetection.
 
 ### 2. Dataset Preparation
 
-​    Currently, KeyPoint Detection Models support [COCO](https://cocodataset.org/#keypoints-2017) and [MPII](http://human-pose.mpi-inf.mpg.de/#overview). Please refer to [Keypoint Dataset Preparation](../../docs/tutorials/PrepareKeypointDataSet_en.md) to prepare dataset.
+​    Currently, KeyPoint Detection Models support [COCO](https://cocodataset.org/#keypoints-2017) and [MPII](http://human-pose.mpi-inf.mpg.de/#overview) datasets. For data preparation, refer to [Keypoint Dataset Preparation](../../docs/tutorials/PrepareKeypointDataSet_en.md).
 
-​   About the description for config files, please refer to [Keypoint Config Guild](../../docs/tutorials/KeyPointConfigGuide_en.md).
+​   For description of config files, please refer to [Keypoint Config Guide](../../docs/tutorials/KeyPointConfigGuide_en.md).
 
   - Note that, when testing by detected bounding boxes in Top-Down method, We should get `bbox.json` by a detection model. You can download the detected results for COCO val2017 [(Detector having human AP of 56.4 on COCO val2017 dataset)](https://paddledet.bj.bcebos.com/data/bbox.json) directly, put it at the root path (`PaddleDetection/`), and set `use_gt_bbox: False` in config file.
 
 ### 3、Training and Testing
 
-​    **Training on single gpu:**
+​    **Single-GPU Training:**
 
 ```shell
 #COCO DataSet
@@ -68,7 +68,7 @@ CUDA_VISIBLE_DEVICES=0 python3 tools/train.py -c configs/keypoint/higherhrnet/hi
 CUDA_VISIBLE_DEVICES=0 python3 tools/train.py -c configs/keypoint/hrnet/hrnet_w32_256x256_mpii.yml
 ```
 
-​    **Training on multiple gpu:**
+​    **Multiple-GPU Training:**
 
 ```shell
 #COCO DataSet
@@ -87,47 +87,47 @@ CUDA_VISIBLE_DEVICES=0 python3 tools/eval.py -c configs/keypoint/higherhrnet/hig
 #MPII DataSet
 CUDA_VISIBLE_DEVICES=0 python3 tools/eval.py -c configs/keypoint/hrnet/hrnet_w32_256x256_mpii.yml
 
-#If you only need the prediction result, you can set --save_prediction_only. Then the result will be saved at output/keypoints_results.json by default.
+#If you only need to save the prediction result, you can set --save_prediction_only. Then the result will be saved in output/keypoints_results.json by default.
 CUDA_VISIBLE_DEVICES=0 python3 tools/eval.py -c configs/keypoint/higherhrnet/higherhrnet_hrnet_w32_512.yml --save_prediction_only
 ```
 
 ​    **Inference**
 
-​    Note：Top-down models only support inference for a cropped image with single person. If you want to do inference on image with several people, please see "joint inference by detection and keypoint". Or you can choose a Bottom-up model.
+​    Note：Top-down models can only infer cropped images containing one person. If you want to infer images containing several people, please use "joint deployment and inference". Or you can adopt a Bottom-up model.
 
 ```shell
 CUDA_VISIBLE_DEVICES=0 python3 tools/infer.py -c configs/keypoint/higherhrnet/higherhrnet_hrnet_w32_512.yml -o weights=./output/higherhrnet_hrnet_w32_512/model_final.pdparams --infer_dir=../images/ --draw_threshold=0.5 --save_txt=True
 ```
 
-​    **Deploy Inference**
+​    **Deployment and Inference**
 
 ```shell
-#export models
+#Model export
 python tools/export_model.py -c configs/keypoint/higherhrnet/higherhrnet_hrnet_w32_512.yml -o weights=output/higherhrnet_hrnet_w32_512/model_final.pdparams
 
-#deploy inference
-#keypoint inference for a single model of top-down/bottom-up method. In this mode, top-down model only support inference for a cropped image with single person.
+#Deployment and inference
+#Deploy inference on keypoint-based top down/bottom up models respectively. In this mode, top-down models only support inference for cropped images containing one person.
 python deploy/python/keypoint_infer.py --model_dir=output_inference/higherhrnet_hrnet_w32_512/ --image_file=./demo/000000014439_640x640.jpg --device=gpu --threshold=0.5
 python deploy/python/keypoint_infer.py --model_dir=output_inference/hrnet_w32_384x288/ --image_file=./demo/hrnet_demo.jpg --device=gpu --threshold=0.5
 
-#joint inference by detection and keypoint for top-down models.
+#Joint deployment and inference of detector and keypoint-based top-down models.
 python deploy/python/det_keypoint_unite_infer.py --det_model_dir=output_inference/ppyolo_r50vd_dcn_2x_coco/ --keypoint_model_dir=output_inference/hrnet_w32_384x288/ --video_file=../video/xxx.mp4  --device=gpu
 ```
 
-​    **joint inference with Multi-Object Tracking model FairMOT**
+​    **Joint deployment and inference with Multi-Object Tracking model FairMOT**
 
 ```shell
-#export FairMOT model
+#FairMOT model export
 python tools/export_model.py -c configs/mot/fairmot/fairmot_dla34_30e_1088x608.yml -o weights=https://paddledet.bj.bcebos.com/models/mot/fairmot_dla34_30e_1088x608.pdparams
 
-#joint inference with Multi-Object Tracking model FairMOT
+#Joint inference with the exported FairMOT model and the keypoint-based model
 python deploy/python/mot_keypoint_unite_infer.py --mot_model_dir=output_inference/fairmot_dla34_30e_1088x608/ --keypoint_model_dir=output_inference/higherhrnet_hrnet_w32_512/ --video_file={your video name}.mp4 --device=GPU
 ```
 **Note:**
- To export MOT model, please refer to [Here](../../configs/mot/README_en.md).
+ To export MOT model, please refer to [this](../../configs/mot/README_en.md).
 
 
-## Reference
+## Citations
 ```
 @inproceedings{cheng2020bottom,
   title={HigherHRNet: Scale-Aware Representation Learning for Bottom-Up Human Pose Estimation},
