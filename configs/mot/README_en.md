@@ -10,18 +10,18 @@ English | [简体中文](README.md)
 - [Citations](#Citations)
 
 ## Introduction
-The current mainstream of 'Tracking By Detecting' multi-object tracking (MOT) algorithm is mainly composed of two parts: detection and embedding. Detection aims to detect the potential targets in each frame of the video. Embedding assigns and updates the detected target to the corresponding track (named ReID task). According to the different implementation of these two parts, it can be divided into **SDE** series and **JDE** series algorithm.
+The mainstream multi-object tracking (MOT) algorithm of 'Tracking By Detecting' is mainly composed of two parts: detection and embedding. Detection detects the potential targets in each frame of the video. Embedding assigns and updates the detected objects to the corresponding tracks (named ReID). Due to their differences in implementation, MOT can be divided into **SDE** algorithms and **JDE** algorithms.
 
-- **SDE** (Separate Detection and Embedding) is a kind of algorithm which completely separates Detection and Embedding. The most representative is **DeepSORT** algorithm. This design can make the system fit any kind of detectors without difference, and can be improved for each part separately. However, due to the series process, the speed is slow. Time-consuming is a great challenge in the construction of real-time MOT system.
-- **JDE** (Joint Detection and Embedding) is to learn detection and embedding simultaneously in a shared neural network, and set the loss function with a multi task learning approach. The representative algorithms are **JDE** and **FairMOT**. This design can achieve high-precision real-time MOT performance.
+- **SDE** (Separate Detection and Embedding) algorithms separate detection from embedding. The most representative is **DeepSORT** algorithm. This solution can make the system fit any kind of detectors, and it can be optimized for each part separately. However, because the end-to-end process is slow and time-consuming, which poses a great challenge in the construction of a real-time MOT system.
+- **JDE** (Joint Detection and Embedding) algorithms learn detection and embedding simultaneously in a shared neural network, and set the loss function with a multi-task learning approach. The representative ones are **JDE** and **FairMOT**. This solution juggle with precision and speed, achieving real-time MOT performance with high precision.
 
-Paddledetection implements three MOT algorithms of these two series, they are [DeepSORT](https://arxiv.org/abs/1812.00442) of SDE algorithm, and [JDE](https://arxiv.org/abs/1909.12605),[FairMOT](https://arxiv.org/abs/2004.01888) of JDE algorithm.
+PaddleDetection makes three MOT algorithms of these two categories available: [DeepSORT](https://arxiv.org/abs/1812.00442) of SDE algorithms, and [JDE](https://arxiv.org/abs/1909.12605) and [FairMOT](https://arxiv.org/abs/2004.01888) of JDE algorithms.
 
 ### PP-Tracking real-time MOT system
-In addition, PaddleDetection also provides [PP-Tracking](../../deploy/pptracking/README.md) real-time multi-object tracking system.
-PP-Tracking is the first open source real-time Multi-Object Tracking system, and it is based on PaddlePaddle deep learning framework. It has rich models, wide application and high efficiency deployment.
+In addition, PaddleDetection also provides [PP-Tracking](../../deploy/pptracking/README.md) real-time MOT system.
+PP-Tracking is the first open-source real-time Multi-Object Tracking system, and it is based on the deep learning framework of PaddlePaddle. It has rich models, wide application scenarios, and efficient deployment.
 
-PP-Tracking supports two paradigms: single camera tracking (MOT) and multi-camera tracking (MTMCT). Aiming at the difficulties and pain points of actual business, PP-Tracking provides various MOT functions and applications such as pedestrian tracking, vehicle tracking, multi-class tracking, small object tracking, traffic statistics and multi-camera tracking. The deployment method supports API and GUI visual interface, and the deployment language supports Python and C++, The deployment platform environment supports Linux, NVIDIA Jetson, etc.
+PP-Tracking supports two paradigms: single camera tracking (MOT) and multi-target multi-camera tracking (MTMCT). To solve the difficulties and pain points of real business, PP-Tracking provides various MOT functions and applications such as pedestrian tracking, vehicle tracking, multi-class tracking, small object tracking, traffic statistics and multi-camera tracking. The deployment method supports API and GUI visual interface, and the deployment language supports Python and C++, The deployment platform environment supports Linux, NVIDIA Jetson, etc.
 
 ### AI studio public project tutorial
 PP-tracking provides an AI studio public project tutorial. Please refer to this [tutorial](https://aistudio.baidu.com/aistudio/projectdetail/3022582).
