@@ -17,23 +17,23 @@ The mainstream multi-object tracking (MOT) algorithm of 'Tracking By Detecting' 
 
 PaddleDetection makes three MOT algorithms of these two categories available: [DeepSORT](https://arxiv.org/abs/1812.00442) of SDE algorithms, and [JDE](https://arxiv.org/abs/1909.12605) and [FairMOT](https://arxiv.org/abs/2004.01888) of JDE algorithms.
 
-### PP-Tracking real-time MOT system
+### PP-Tracking Real-Time MOT System
 In addition, PaddleDetection also provides [PP-Tracking](../../deploy/pptracking/README.md) real-time MOT system.
 PP-Tracking is the first open-source real-time Multi-Object Tracking system, and it is based on the deep learning framework of PaddlePaddle. It has rich models, wide application scenarios, and efficient deployment.
 
-PP-Tracking supports two paradigms: single camera tracking (MOT) and multi-target multi-camera tracking (MTMCT). To solve the difficulties and pain points of real business, PP-Tracking provides various MOT functions and applications such as pedestrian tracking, vehicle tracking, multi-class tracking, small object tracking, traffic statistics and multi-camera tracking. The deployment method supports API and GUI visual interface, and the deployment language supports Python and C++, The deployment platform environment supports Linux, NVIDIA Jetson, etc.
+PP-Tracking supports two paradigms: Mono-Camera Tracking (MOT) and Multi-Target Multi-Camera Tracking (MTMCT). To solve the difficulties and pain points of real business, PP-Tracking includes various application scenarios of Multi-Object Tracking such as pedestrian tracking, vehicle tracking, multi-class tracking, small object tracking, traffic statistics and multi-camera tracking. The deployment method supports the API call and GUI , and compatible deployment languages include Python and C++, The deployment platform environment supports Linux, NVIDIA Jetson, etc.
 
-### AI studio public project tutorial
-PP-tracking provides an AI studio public project tutorial. Please refer to this [tutorial](https://aistudio.baidu.com/aistudio/projectdetail/3022582).
+### Public Projects of AI studio
+There is a public project of AI studio on PP-Tracking. You can refer to this [tutorial](https://aistudio.baidu.com/aistudio/projectdetail/3022582).
 
-### Python predict and deployment
-PP-Tracking supports Python predict and deployment. Please refer to this [doc](../../deploy/pptracking/python/README.md).
+### Python Prediction and Deployment
+PP-Tracking supports prediction and deployment with python. For the tutorial, refer to this [doc](../../deploy/pptracking/python/README.md).
 
-### C++ predict and deployment
-PP-Tracking supports C++ predict and deployment. Please refer to this [doc](../../deploy/pptracking/cpp/README.md).
+### C++ Prediction and Deployment
+PP-Tracking supports prediction and deployment with C++. For the tutorial, refer to this [doc](../../deploy/pptracking/cpp/README.md).
 
-### GUI predict and deployment
-PP-Tracking supports GUI predict and deployment. Please refer to this [doc](https://github.com/yangyudong2020/PP-Tracking_GUi).
+### GUI prediction and Deployment
+PP-Tracking supports predict and deployment with GUI. Please refer to this [doc](https://github.com/yangyudong2020/PP-Tracking_GUi).
 
 <div width="1000" align="center">
   <img src="../../docs/images/pptracking_en.png"/>
@@ -46,24 +46,24 @@ PP-Tracking supports GUI predict and deployment. Please refer to this [doc](http
 </div>
 
 
-## Installation
-Install all the related dependencies for MOT:
+## Dependency Installation
+Install all the dependencies related to MOT:
 ```
 pip install lap sklearn motmetrics openpyxl cython_bbox
 or
 pip install -r requirements.txt
 ```
-**Notes:**
-- Install `cython_bbox` for Windows: `pip install -e git+https://github.com/samson-wang/cython_bbox.git#egg=cython-bbox`. You can refer to this [tutorial](https://stackoverflow.com/questions/60349980/is-there-a-way-to-install-cython-bbox-for-windows).
-- Please make sure that [ffmpeg](https://ffmpeg.org/ffmpeg.html) is installed first, on Linux(Ubuntu) platform you can directly install it by the following command:`apt-get update && apt-get install -y ffmpeg`.
+**Note:**
+- Install `cython_bbox` for Windows: `pip install -e git+https://github.com/samson-wang/cython_bbox.git#egg=cython-bbox`. You can refer to the [tutorial](https://stackoverflow.com/questions/60349980/is-there-a-way-to-install-cython-bbox-for-windows).
+- Please make sure that [ffmpeg](https://ffmpeg.org/ffmpeg.html) is installed before prediction, on Linux(Ubuntu) platform you can achieve this with the following command:`apt-get update && apt-get install -y ffmpeg`.
 
 
 ## Model Zoo
-- Base models
+- Basic Models
     - [DeepSORT](deepsort/README.md)
     - [JDE](jde/README.md)
     - [FairMOT](fairmot/README.md)
-- Feature models
+- Feature Models
     - [Pedestrian](pedestrian/README.md)
     - [Head](headtracking21/README.md)
     - [Vehicle](vehicle/README.md)
@@ -75,17 +75,17 @@ pip install -r requirements.txt
 
 ## Dataset Preparation
 ### MOT Dataset
-PaddleDetection implement [JDE](https://github.com/Zhongdao/Towards-Realtime-MOT) and [FairMOT](https://github.com/ifzhang/FairMOT), and use the same training data named 'MIX' as them, including **Caltech Pedestrian, CityPersons, CUHK-SYSU, PRW, ETHZ, MOT17 and MOT16**. The former six are used as the mixed dataset for training, and MOT16 are used as the evaluation dataset. If you want to use these datasets, please **follow their licenses**.
+PaddleDetection have reproduced [JDE](https://github.com/Zhongdao/Towards-Realtime-MOT) and [FairMOT](https://github.com/ifzhang/FairMOT) with their shared dataset 'MIX', including **Caltech Pedestrian, CityPersons, CUHK-SYSU, PRW, ETHZ, MOT17 and MOT16**. The former six are used as federated datasets for training, and MOT16 is adopted as the test dataset. If you want to use them, please **follow their licenses**.
 
-In order to train the feature models of more scenes, more datasets are also processed into the same format as the MIX dataset. Please refer to MOT data preparation [doc](../../docs/tutorials/PrepareMOTDataSet.md) to prepare the dataset.
+In order to train more models of different scenarios, their datasets should also be processed into the same format as the MIX dataset. Please refer to [doc](../../docs/tutorials/PrepareMOTDataSet.md) to prepare the datasets.
 
 ### Dataset Directory
-First, download the image_lists.zip using the following command, and unzip them into `PaddleDetection/dataset/mot`:
+First, download the image_lists.zip with the following command, and unzip it into `PaddleDetection/dataset/mot`:
 ```
 wget https://dataset.bj.bcebos.com/mot/image_lists.zip
 ```
 
-Then, download the MIX dataset using the following command, and unzip them into `PaddleDetection/dataset/mot`:
+Then, download the MIX dataset using the following command, and unzip it into `PaddleDetection/dataset/mot`:
 ```
 wget https://dataset.bj.bcebos.com/mot/MOT17.zip
 wget https://dataset.bj.bcebos.com/mot/Caltech.zip
@@ -123,7 +123,7 @@ dataset/mot
 ```
 
 ### Data Format
-These several relevant datasets have the following structure:
+All these datasets share the following structure:
 ```
 MOT17
    |——————images
@@ -132,16 +132,16 @@ MOT17
    └——————labels_with_ids
             └——————train
 ```
-Annotations of these datasets are provided in a unified format. Every image has a corresponding annotation text. Given an image path, the annotation text path can be generated by replacing the string `images` with `labels_with_ids` and replacing `.jpg` with `.txt`.
+Annotations of these datasets are in a unified format. Every image has its annotated text. Given an image path, the annotation text path can be generated by replacing the string `images` with `labels_with_ids` and replacing `.jpg` with `.txt`.
 
-In the annotation text, each line is describing a bounding box and has the following format:
+In the annotated text, each line describes one bounding box:
 ```
 [class] [identity] [x_center] [y_center] [width] [height]
 ```
-**Notes:**
-- `class` is the class id, start from 0, and support single class and multi-class.
-- `identity` is an integer from `1` to `num_identities`(`num_identities` is the total number of instances of objects in the dataset), or `-1` if this box has no identity annotation.
-- `[x_center] [y_center] [width] [height]` are the center coordinates, width and height, note that they are normalized by the width/height of the image, so they are floating point numbers ranging from 0 to 1.
+**Note:**
+- `class` is an id of classification, which starts from 0, and supports single class and multi-class.
+- `identity` is an integer between `1` and `num_identities`(`num_identities` refers to the total number of instances of objects in the dataset). It would be `-1` without the annotation of `identity`.
+- `[x_center] [y_center] [width] [height]` represent the coordinate of and center point, width and height. It should be noted that they are normalized by the width/height of the image, so they are floating point numbers ranging from 0 to 1.
 
 
 ## Citations
