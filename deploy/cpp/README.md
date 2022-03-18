@@ -1,4 +1,4 @@
-[简体中文]| [English](Readme_en.md)
+简体中文| [English](Readme_en.md)
 # C++端预测部署
 
 
