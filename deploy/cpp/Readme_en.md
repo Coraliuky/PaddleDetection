@@ -10,7 +10,7 @@
 
 ## Overview of Deployment using C++
 1. [Explanation](#1Explanation)
-2. [Directory and Docs](#2Directory and Docs)
+2. [Directory and Docs](#2Directory_and_Docs)
 
 
 ### 1. Explanation
