@@ -124,7 +124,7 @@ python deploy/pphuman/pipeline.py --config deploy/pphuman/config/infer_cfg.yml -
 The overall solution of PP-Human is as follows:
 
 <div width="1000" align="center">
-  <img src="../../docs/images/pphuman-tech.png"/>
+  <img src="../../docs/images/pphuman-tech_en.png"/>
 </div>
 
 
